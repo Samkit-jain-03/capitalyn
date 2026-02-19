@@ -1,0 +1,154 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="paymentApp">
+<head>
+    <meta charset="UTF-8">
+    <title>CAPITALYN | Payment Tracking</title>
+
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+    <script src="payment-app.js"></script>
+
+    <style>
+        body {
+            margin: 0;
+            font-family: "Segoe UI", Arial, sans-serif;
+            background-color: #0b1f3a;
+            color: #0b1f3a;
+        }
+
+        .payment-header {
+            background: linear-gradient(to bottom, #0b1f3a, #07162b);
+            padding: 28px 20px;
+            text-align: center;
+            color: #ffffff;
+        }
+
+        .payment-header img {
+            width: 55px;
+            margin-bottom: 8px;
+        }
+
+        .payment-header h1 {
+            margin: 0;
+            font-size: 26px;
+            letter-spacing: 2px;
+            font-weight: 600;
+        }
+
+        .payment-header p {
+            font-size: 13px;
+            margin-top: 6px;
+            opacity: 0.85;
+        }
+
+        .payment-container {
+            background-color: #f6f1e3;
+            padding: 30px;
+        }
+
+        .payment-section-title {
+            font-size: 20px;
+            font-weight: 600;
+            color: #0b1f3a;
+            border-bottom: 2px solid #0b1f3a;
+            padding-bottom: 6px;
+            margin: 30px 0 15px;
+        }
+
+        .payment-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+            background-color: #fffaf0;
+        }
+
+        .payment-table th {
+            background-color: #1b2d4f;
+            color: #ffffff;
+            padding: 12px;
+            font-size: 14px;
+            text-align: center;
+        }
+
+        .payment-table td {
+            padding: 12px;
+            border: 1px solid #d6d0bf;
+            text-align: center;
+            font-size: 14px;
+        }
+
+        .payment-table tr:nth-child(even) td {
+            background-color: #f2ecd9;
+        }
+
+        .payment-note {
+            font-size: 13px;
+            margin-top: 8px;
+            color: #0b1f3a;
+        }
+
+        .payment-divider {
+            height: 1px;
+            background-color: #9aa4b2;
+            margin: 35px 0;
+        }
+    </style>
+</head>
+
+<body ng-controller="PaymentController">
+
+<header class="payment-header">
+    <img src="images\unnamed.jpg" alt="CAPITALYN Logo">
+    <h1>CAPITALYN</h1>
+    <p>Payment Tracking System</p>
+</header>
+
+<div class="payment-container">
+
+    <div class="payment-section-title">Upcoming Payments</div>
+
+    <table class="payment-table">
+        <tr>
+            <th>Name (Uppercase)</th>
+            <th>Type (Lowercase)</th>
+            <th>Amount (Currency)</th>
+            <th>Due Date (Date)</th>
+            <th>Installments (Number)</th>
+        </tr>
+
+        <tr ng-repeat="p in payments | limitTo:5">
+            <td>{{ p.name | uppercase }}</td>
+            <td>{{ p.type | lowercase }}</td>
+            <td>{{ p.amount | currency:"₹" }}</td>
+            <td>{{ p.dueDate | date:"dd-MMM-yyyy" }}</td>
+            <td>{{ p.installments | number }}</td>
+        </tr>
+    </table>
+
+    <div class="payment-note">
+        Subset of payment records displayed using limitTo filter.
+    </div>
+
+    <div class="payment-divider"></div>
+
+    <div class="payment-section-title">Defaulters List</div>
+
+    <table class="payment-table">
+        <tr>
+            <th>Name</th>
+            <th>Outstanding Amount</th>
+            <th>Days Overdue</th>
+            <th>Status</th>
+        </tr>
+
+        <tr ng-repeat="d in defaulters | filter:{status:'Overdue'}">
+            <td>{{ d.name | uppercase }}</td>
+            <td>{{ d.outstanding | currency:"₹" }}</td>
+            <td>{{ d.days | number }}</td>
+            <td>{{ d.status }}</td>
+        </tr>
+    </table>
+
+</div>
+
+</body>
+</html>

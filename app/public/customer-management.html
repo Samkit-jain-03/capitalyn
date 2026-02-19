@@ -1,0 +1,351 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Customer Management - Capitalyn</title>
+
+  <!-- Google Fonts + Icons -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;600;700&display=swap" rel="stylesheet">
+  <script src="https://kit.fontawesome.com/6a4e92d5db.js" crossorigin="anonymous"></script>
+
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Poppins', sans-serif;
+      background: url('images/download (1).jpeg') no-repeat center center/cover;
+
+      color: #1b263b;
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+    }
+
+    header {
+      text-align: center;
+      padding: 1.5rem;
+      color: #f3e7cf;
+      background: linear-gradient(135deg, #0a1f44, #102c69);
+      border-bottom: 4px solid #d2b48c;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.3);
+      width: 100%;
+    }
+
+    .logo {
+      width: 80px;
+      height: 80px;
+      border-radius: 50%;
+      object-fit: cover;
+      margin-bottom: 0.5rem;
+    }
+
+    .title {
+      font-size: 2.3rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+    }
+
+    .subtitle {
+      font-size: 1rem;
+      color: #f3e7cf;
+      opacity: 0.85;
+    }
+
+    /* Description text */
+    .page-desc {
+      background: rgba(255, 255, 255, 0.85);
+      margin: 2rem auto 1rem;
+      padding: 1rem 1.5rem;
+      border-radius: 12px;
+      max-width: 800px;
+      text-align: center;
+      box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+      font-size: 1.1rem;
+      color: #0a1f44;
+      line-height: 1.6;
+    }
+
+    /* Flexbox for Reports & Analytics */
+    .report-box {
+      background: rgba(10, 31, 68, 0.9);
+      color: #f3e7cf;
+      width: 300px;
+      height: 180px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      border-radius: 15px;
+      margin: 1rem auto;
+      box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+      transition: all 0.3s ease;
+      cursor: pointer;
+      text-align: center;
+    }
+
+    .report-box:hover {
+      transform: translateY(-6px);
+      background: #d2b48c;
+      color: #0a1f44;
+    }
+
+    .report-box i {
+      font-size: 2.5rem;
+      margin-bottom: 0.8rem;
+    }
+
+    .form-container {
+      background-color: rgba(255, 255, 255, 0.95);
+      padding: 2rem 2.5rem;
+      border-radius: 15px;
+      box-shadow: 0 6px 25px rgba(0, 0, 0, 0.25);
+      max-width: 480px;
+      width: 90%;
+      margin-top: 2rem;
+      animation: fadeIn 0.8s ease-in-out;
+    }
+
+    .form-container h2 {
+      text-align: center;
+      color: #0a1f44;
+      margin-bottom: 1.5rem;
+      font-weight: 700;
+    }
+
+    .form-group {
+      margin-bottom: 1.2rem;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 0.4rem;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 0.8rem;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+      font-size: 1rem;
+      background-color: #f8f9fa;
+      transition: all 0.3s ease;
+    }
+
+    input:focus, select:focus {
+      border-color: #0a1f44;
+      outline: none;
+      box-shadow: 0 0 5px rgba(10, 31, 68, 0.4);
+    }
+
+    button {
+      width: 100%;
+      padding: 0.8rem;
+      background-color: #0a1f44;
+      color: #f3e7cf;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      font-weight: bold;
+      font-size: 1rem;
+      margin-top: 1rem;
+      transition: background 0.3s ease;
+    }
+
+    button:hover {
+      background-color: #d2b48c;
+      color: #0a1f44;
+    }
+
+    .back-btn {
+      display: inline-block;
+      margin-top: 1.5rem;
+      text-align: center;
+      text-decoration: none;
+      background: #d2b48c;
+      color: #0a1f44;
+      padding: 0.7rem 1.5rem;
+      border-radius: 8px;
+      font-weight: bold;
+      transition: all 0.3s ease;
+    }
+
+    .back-btn:hover {
+      background: #0a1f44;
+      color: #f3e7cf;
+    }
+
+    @keyframes fadeIn {
+      from { opacity: 0; transform: translateY(20px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+    .pre-form-box {
+  background: rgba(255, 255, 255, 0.85);
+  padding: 1.5rem;
+  border-radius: 12px;
+  max-width: 800px;
+  margin: 1rem auto;
+  text-align: center;
+  box-shadow: 0 3px 15px rgba(0, 0, 0, 0.15);
+}
+
+.info-text {
+  font-size: 1.1rem;
+  color: #0a1f44;
+  margin-bottom: 1rem;
+  font-weight: 600;
+}
+
+.asset-box {
+  background: rgba(10, 31, 68, 0.9);
+  color: #f3e7cf;
+  width: 300px;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  border-radius: 15px;
+  margin: 1rem auto;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.25);
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+
+.asset-box:hover {
+  transform: translateY(-6px);
+  background: #d2b48c;
+  color: #0a1f44;
+}
+
+.asset-box i {
+  font-size: 2.5rem;
+  margin-bottom: 0.8rem;
+}
+
+  </style>
+</head>
+<body>
+  <header>
+    <img src="images\unnamed.jpg" alt="Capitalyn Logo" class="logo" />
+    <div class="title">CAPITALYN</div>
+    <div class="subtitle">Customer Management Module</div>
+  </header>
+
+  <div class="page-desc">
+    <p>New customers can be registered here using the form below. Fill out all required details to add a new customer to the Capitalyn database.</p>
+    <p>If you want to check on an existing customer, click the box below to go to <b>Reports & Analytics</b>.</p>
+  </div>
+
+  <div class="report-box" onclick="window.location.href='reports.html'">
+    <i class="fas fa-chart-line"></i>
+    <h3>Go to Reports & Analytics</h3>
+  </div>
+
+<div class="pre-form-box">
+  <p class="info-text">
+    After filling in the details of the new customer, fill in the details of the asset pledged by the customer.
+  </p>
+
+  <div class="asset-box" onclick="window.location.href='asset-valuation.html'">
+      <i class="fas fa-balance-scale"></i>
+      <h3>Go to Asset Valuation</h3>
+  </div>
+</div>
+
+  <div class="form-container">
+    <h2>Customer Registration</h2>
+    <form id="customerForm">
+      <div class="form-group">
+        <label for="custName">Full Name</label>
+        <input type="text" id="custName" placeholder="Enter full name" required>
+      </div>
+
+      <div class="form-group">
+        <label for="custEmail">Email</label>
+        <input type="email" id="custEmail" placeholder="Enter email" required>
+      </div>
+
+      <div class="form-group">
+        <label for="custPhone">Phone Number</label>
+        <input type="tel" id="custPhone" placeholder="Enter phone number" required>
+      </div>
+
+      <div class="form-group">
+        <label for="custAddress">Address</label>
+        <input type="text" id="custAddress" placeholder="Enter address" required>
+      </div>
+
+      <div class="form-group">
+        <label for="custAsset">Asset Type</label>
+        <select id="custAsset" required>
+          <option value="">Select Asset</option>
+          <option>Gold</option>
+          <option>Electronics</option>
+          <option>Vehicles</option>
+          <option>Property</option>
+        </select>
+
+      <div class="form-group">
+        <label for="custLoan">Loan Amount (₹)</label>
+        <input type="text" id="custLoan" placeholder="Enter loan amount " required>
+      </div>  
+      </div>
+
+      <button type="submit" id="submitBtn">Submit</button>
+    </form>
+    
+  </div>
+
+<script>
+document.getElementById('customerForm').addEventListener('submit', function(e) {
+    e.preventDefault();
+
+    const name = document.getElementById('custName').value.trim();
+    const email = document.getElementById('custEmail').value.trim();
+    const phone = document.getElementById('custPhone').value.trim();
+    const address = document.getElementById('custAddress').value.trim();
+    const asset = document.getElementById('custAsset').value.trim();
+    const loan = document.getElementById('custLoan').value.trim();
+
+    if (!name || !email || !phone || !address || !asset || !loan) {
+        alert("⚠️ Please fill out all fields!");
+        return;
+    }
+
+    // AJAX request
+    var xhr = new XMLHttpRequest();
+    xhr.open("POST", "submitCustomer", true); // dummy endpoint
+    xhr.setRequestHeader("Content-Type", "application/json");
+
+    xhr.onreadystatechange = function () {
+        if (xhr.readyState === 4) {
+            // Simulating successful response
+            alert("✅ Form submitted successfully!");
+
+            // Optional: reset form after submission
+            document.getElementById('customerForm').reset();
+        }
+    };
+
+    // Sending data (even though backend doesn't exist)
+    var data = JSON.stringify({
+        name: name,
+        email: email,
+        phone: phone,
+        address: address,
+        asset: asset,
+        loan: loan
+    });
+
+    xhr.send(data);
+});
+</script>
+
+
+
+
+</body>
+</html>

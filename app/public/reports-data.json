@@ -1,0 +1,46 @@
+{
+  "customers": [
+    {
+      "fullName": "Ramesh Kumar",
+      "email": "ramesh@gmail.com",
+      "phone": "9876543210",
+      "address": "Mumbai",
+      "assetType": "Gold"
+    },
+    {
+      "fullName": "Anita Sharma",
+      "email": "anita@gmail.com",
+      "phone": "9123456780",
+      "address": "Delhi",
+      "assetType": "Laptop"
+    }
+  ],
+
+  "assets": [
+    {
+      "assetType": "Gold Ring",
+      "weight": "20g",
+      "condition": "Good",
+      "marketValue": 50000
+    },
+    {
+      "assetType": "Laptop",
+      "weight": "2kg",
+      "condition": "Average",
+      "marketValue": 30000
+    }
+  ],
+
+  "loans": [
+    {
+      "customerName": "Ramesh Kumar",
+      "assetPledged": "Gold Ring",
+      "loanAmount": 50000
+    },
+    {
+      "customerName": "Anita Sharma",
+      "assetPledged": "Laptop",
+      "loanAmount": 30000
+    }
+  ]
+}

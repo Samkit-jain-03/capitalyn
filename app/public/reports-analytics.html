@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html ng-app="reportsApp">
+<head>
+    <title>Reports & Analytics</title>
+
+    <!-- AngularJS CDN -->
+    <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.8.2/angular.min.js"></script>
+
+    <!-- App Logic -->
+    <script src="reports-app.js"></script>
+    <style>
+/* ===== Global ===== */
+body {
+    margin: 0;
+    font-family: "Segoe UI", Arial, sans-serif;
+    background-color: #f5f1e6; /* Beige */
+    color: #1f2a44; /* Navy */
+}
+
+/* ===== Header ===== */
+.brand-header {
+    background-color: #1f2a44; /* Navy Blue */
+    padding: 20px 0;
+    text-align: center;
+}
+
+.brand-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.brand-logo {
+    width: 80px;
+    height: auto;
+    margin-bottom: 8px;
+}
+
+.brand-name {
+    color: #f5f1e6; /* Beige */
+    letter-spacing: 3px;
+    margin: 0;
+}
+
+.brand-tagline {
+    color: #d8cfb4;
+    margin-top: 4px;
+    font-size: 14px;
+}
+
+/* ===== Page Content ===== */
+.content {
+    padding: 25px;
+}
+
+/* ===== Search Box ===== */
+input[type="text"] {
+    padding: 8px;
+    width: 250px;
+    border: 1px solid #1f2a44;
+    border-radius: 4px;
+    margin-bottom: 10px;
+}
+
+/* ===== Status ===== */
+.status {
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+/* ===== Tables ===== */
+table {
+    width: 100%;
+    border-collapse: collapse;
+    background-color: #fffaf0;
+    margin-bottom: 30px;
+}
+
+th {
+    background-color: #1f2a44;
+    color: #f5f1e6;
+    padding: 10px;
+}
+
+td {
+    padding: 8px;
+    border: 1px solid #d8cfb4;
+}
+
+/* ===== Hover Effect ===== */
+tr:hover {
+    background-color: #f0e8d5;
+    cursor: pointer;
+}
+
+/* ===== Section Headings ===== */
+h2, h3 {
+    color: #1f2a44;
+    
+}
+</style>
+
+</head>
+
+<body ng-controller="ReportsController">
+    <header class="brand-header">
+    <div class="brand-container">
+        <img src="images\unnamed.jpg" alt="CAPITALYN Logo" class="brand-logo">
+        <h1 class="brand-name">CAPITALYN</h1>
+        <p class="brand-tagline">Reports & Analytics Dashboard</p>
+    </div>
+</header>
+
+
+<h2>Reports & Analytics Dashboard</h2>
+
+<!-- Search + focus/blur -->
+<input type="text"
+       placeholder="Search reports"
+       ng-model="searchText"
+       ng-focus="updateStatus('Search box focused')"
+       ng-blur="updateStatus('Search box lost focus')">
+
+<p><b>Status:</b> {{ statusMessage }}</p>
+
+<hr>
+
+<!-- ================= CUSTOMER REPORT ================= -->
+<h3>Customer Report</h3>
+
+<table border="1" width="90%">
+<tr>
+  <th>Full Name</th>
+  <th>Email</th>
+  <th>Phone</th>
+  <th>Address</th>
+  <th>Asset Type</th>
+</tr>
+
+<tr ng-repeat="c in customers | filter:searchText"
+    ng-mouseover="updateStatus('Mouse over customer row')"
+    ng-click="updateStatus(c.fullName + ' selected')">
+
+  <td>{{ c.fullName | uppercase }}</td>
+  <td>{{ c.email }}</td>
+  <td>{{ c.phone }}</td>
+  <td>{{ c.address }}</td>
+  <td>{{ c.assetType }}</td>
+</tr>
+</table>
+
+<hr>
+
+<!-- ================= ASSET REPORT ================= -->
+<h3>Asset Report</h3>
+
+<table border="1" width="90%">
+<tr>
+  <th>Asset Type</th>
+  <th>Weight</th>
+  <th>Condition</th>
+  <th>Estimated Market Value</th>
+</tr>
+
+<tr ng-repeat="a in assets | filter:searchText"
+    ng-mouseover="updateStatus('Mouse over asset row')"
+    ng-click="updateStatus(a.assetType + ' selected')">
+
+  <td>{{ a.assetType }}</td>
+  <td>{{ a.weight }}</td>
+  <td>{{ a.condition }}</td>
+  <td>{{ a.marketValue | currency:'₹' }}</td>
+</tr>
+</table>
+
+<hr>
+
+<!-- ================= LOAN REPORT ================= -->
+<h3>Loan Report</h3>
+
+<table border="1" width="90%">
+<tr>
+  <th>Customer Name</th>
+  <th>Asset Pledged</th>
+  <th>Loan Amount</th>
+</tr>
+
+<tr ng-repeat="l in loans | filter:searchText"
+    ng-mouseover="updateStatus('Mouse over loan row')"
+    ng-click="updateStatus(l.customerName + ' selected')">
+
+  <td>{{ l.customerName }}</td>
+  <td>{{ l.assetPledged }}</td>
+  <td>{{ l.loanAmount | currency:'₹' }}</td>
+</tr>
+</table>
+
+</body>
+</html>

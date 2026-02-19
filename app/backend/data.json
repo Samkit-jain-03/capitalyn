@@ -1,0 +1,23 @@
+[
+  {
+    "id": 1,
+    "customerName": "Rahul Sharma",
+    "assetType": "Gold Chain",
+    "loanAmount": 50000,
+    "interestRate": 12
+  },
+  {
+    "id": 2,
+    "customerName": "Priya Verma",
+    "assetType": "Silver Bracelet",
+    "loanAmount": 30000,
+    "interestRate": 10
+  },
+  {
+    "id": 1771476458379,
+    "customerName": "Om Agarwal",
+    "assetType": "2nd hand car",
+    "loanAmount": "1500",
+    "interestRate": "8"
+  }
+]

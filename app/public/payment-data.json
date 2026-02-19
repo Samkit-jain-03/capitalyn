@@ -1,0 +1,73 @@
+{
+  "payments": [
+    {
+      "name": "Rohit Sharma",
+      "type": "Loan EMI",
+      "amount": 15000,
+      "dueDate": "2026-02-05",
+      "installments": 12
+    },
+    {
+      "name": "Ananya Gupta",
+      "type": "Asset Lease",
+      "amount": 22000,
+      "dueDate": "2026-02-10",
+      "installments": 8
+    },
+    {
+      "name": "Karan Mehta",
+      "type": "Mortgage",
+      "amount": 30500,
+      "dueDate": "2026-02-15",
+      "installments": 24
+    },
+    {
+      "name": "Neha Verma",
+      "type": "Business Loan",
+      "amount": 18000,
+      "dueDate": "2026-02-18",
+      "installments": 10
+    },
+    {
+      "name": "Amit Patel",
+      "type": "Personal Loan",
+      "amount": 12500,
+      "dueDate": "2026-02-20",
+      "installments": 6
+    },
+    {
+      "name": "Sneha Iyer",
+      "type": "Vehicle Loan",
+      "amount": 27000,
+      "dueDate": "2026-02-22",
+      "installments": 18
+    }
+  ],
+
+  "defaulters": [
+    {
+      "name": "Rahul Khanna",
+      "outstanding": 45000,
+      "days": 25,
+      "status": "Overdue"
+    },
+    {
+      "name": "Pooja Malhotra",
+      "outstanding": 32000,
+      "days": 18,
+      "status": "Overdue"
+    },
+    {
+      "name": "Vikram Singh",
+      "outstanding": 15000,
+      "days": 10,
+      "status": "Overdue"
+    },
+    {
+      "name": "Arshdeep Singh",
+      "outstanding": 145000,
+      "days": 9,
+      "status": "Pending"
+    }
+  ]
+}

@@ -1,0 +1,10 @@
+.loan-page {
+  min-height: 100vh;
+  background: url("/images/download (1).jpg") no-repeat center / cover;
+}
+
+/* Header */
+.loan-page header {
+  padding: 1.5rem;
+  background: linear-gradient(135deg, #0a1f44, #102c69);
+}

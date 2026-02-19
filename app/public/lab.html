@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>CAPITALYN</title>
+
+<style>
+
+body {
+    margin: 0;
+    font-family: 'Segoe UI', sans-serif;
+    background: #f4efe6;
+}
+
+/* HEADER */
+header {
+    background: #0b2c4d;
+    color: #f4efe6;
+    padding: 35px 0;
+    text-align: center;
+}
+
+/* LOGO AREA */
+.logo-container {
+    margin-bottom: 12px;
+}
+
+.logo-box {
+    width: 90px;
+    height: 90px;
+    margin: 0 auto;
+    background: #f4efe6;
+    border-radius: 14px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: #0b2c4d;
+    font-weight: bold;
+    font-size: 32px;
+    letter-spacing: 3px;
+}
+
+/* BRAND NAME */
+.brand-name {
+    font-size: 30px;
+    font-weight: 600;
+    letter-spacing: 6px;
+}
+
+/* MAIN CONTAINER */
+.container {
+    max-width: 950px;
+    margin: 50px auto;
+    background: white;
+    padding: 45px;
+    border-radius: 14px;
+    box-shadow: 0 12px 35px rgba(0,0,0,0.08);
+}
+
+/* SECTION TITLES */
+h2 {
+    color: #0b2c4d;
+    border-bottom: 2px solid #0b2c4d;
+    padding-bottom: 8px;
+    margin-top: 35px;
+}
+
+/* BUTTONS */
+button {
+    background: #0b2c4d;
+    color: #f4efe6;
+    border: none;
+    padding: 10px 22px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-weight: 500;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    background: #154a7a;
+}
+
+/* LIST */
+ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 20px;
+}
+
+li {
+    padding: 16px;
+    margin-bottom: 14px;
+    background: #f9f6f0;
+    border-left: 6px solid #0b2c4d;
+    border-radius: 8px;
+    font-weight: 500;
+}
+
+/* FORM CARD */
+.form-card {
+    margin-top: 20px;
+    padding: 30px;
+    background: #f9f6f0;
+    border-radius: 12px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.05);
+}
+
+/* FORM GROUP */
+.form-group {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 20px;
+}
+
+/* LABELS */
+.form-group label {
+    font-size: 14px;
+    font-weight: 600;
+    margin-bottom: 6px;
+    color: #0b2c4d;
+}
+
+/* INPUTS */
+.form-group input {
+    padding: 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font-size: 14px;
+    transition: 0.3s ease;
+}
+
+.form-group input:focus {
+    border-color: #0b2c4d;
+    outline: none;
+    box-shadow: 0 0 6px rgba(11,44,77,0.25);
+}
+
+/* PRIMARY BUTTON */
+.primary-btn {
+    width: 100%;
+    padding: 13px;
+    font-size: 15px;
+    font-weight: 600;
+    background: #0b2c4d;
+    color: #f4efe6;
+    border: none;
+    border-radius: 6px;
+    cursor: pointer;
+    transition: 0.3s ease;
+}
+
+.primary-btn:hover {
+    background: #154a7a;
+}
+
+/* FOOTER */
+.footer {
+    text-align: center;
+    margin-top: 40px;
+    color: #777;
+    font-size: 14px;
+}
+
+</style>
+
+</head>
+
+<body>
+
+<header>
+
+    <div class="logo-container">
+        <!-- Replace this with <img src="logo.png" width="90"> if needed -->
+        <div class="logo-box">C</div>
+    </div>
+
+    <div class="brand-name">CAPITALYN</div>
+
+</header>
+
+<div class="container">
+
+    <h2>Customer Loan Records</h2>
+
+    <button onclick="loadCustomers()">Load Customers</button>
+
+    <ul id="customerList"></ul>
+
+    <h2>Add Customer</h2>
+
+    <div class="form-card">
+
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input type="text" id="customerName" placeholder="Enter full name">
+        </div>
+
+        <div class="form-group">
+            <label>Asset Type</label>
+            <input type="text" id="assetType" placeholder="Gold Chain / Silver Ring">
+        </div>
+
+        <div class="form-group">
+            <label>Loan Amount (₹)</label>
+            <input type="number" id="loanAmount" placeholder="Enter amount">
+        </div>
+
+        <div class="form-group">
+            <label>Interest Rate (%)</label>
+            <input type="number" id="interestRate" placeholder="Enter interest rate">
+        </div>
+
+        <button class="primary-btn" onclick="addCustomer()">Add Customer</button>
+
+    </div>
+
+</div>
+
+<div class="footer">
+    CAPITALYN Financial Services • Secure Loan Management
+</div>
+
+<script>
+
+function loadCustomers() {
+
+    fetch('http://localhost:3000/customers')
+    .then(res => res.json())
+    .then(data => {
+
+        const list = document.getElementById("customerList");
+        list.innerHTML = "";
+
+        data.forEach(customer => {
+            const li = document.createElement("li");
+            li.textContent =
+                customer.customerName + " | " +
+                customer.assetType + " | ₹" +
+                customer.loanAmount + " | " +
+                customer.interestRate + "%";
+            list.appendChild(li);
+        });
+
+    });
+
+}
+
+function addCustomer() {
+
+    const customerName = document.getElementById("customerName").value;
+    const assetType = document.getElementById("assetType").value;
+    const loanAmount = document.getElementById("loanAmount").value;
+    const interestRate = document.getElementById("interestRate").value;
+
+    fetch('http://localhost:3000/addCustomer', {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({
+            id: Date.now(),
+            customerName: customerName,
+            assetType: assetType,
+            loanAmount: loanAmount,
+            interestRate: interestRate
+        })
+    })
+    .then(res => res.json())
+    .then(data => {
+        alert(data.message);
+        loadCustomers();
+    });
+
+}
+
+</script>
+
+</body>
+</html>
